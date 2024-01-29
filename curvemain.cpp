@@ -40,8 +40,8 @@ int main() {
 // 4. Заполните второй контейнер, который будет содержать только круги из первого контейнера. Убедитесь, что
 //    второй контейнер разделяет (т.е. не клонирует) круги первого, например. через указатели.
 
-    vector <Circle> cont1(100);
-    vector <Circle> cont2;
+    vector <Circle *> cont1(100);
+    vector <Circle *> cont2;
 
     srand(time(NULL));  // Генерирует случайное число, используя текущие дату и время как параметр
 
@@ -59,8 +59,8 @@ int main() {
             case 0:    // Circle
                 rx = (rand() % 100 + 15) / 10.0;
                 wc = Circle(rx);
-                cont2.push_back(wc);   // копируется указатель на объект, я так думаю 
-                cont1[i] = wc;
+                cont2.push_back(&wc);   // копируется указатель на объект, я так думаю 
+                cont1[i] = &wc;
                 cout << "Circle rx = " << rx << endl;
                 printData(&wc, PI/4);
                 break;
@@ -68,7 +68,7 @@ int main() {
                 rx = (rand() % 100 + 15) / 10.0;
                 ry = (rand() % 100 + 15) / 10.0;
                 we = Ellipse(rx, ry);
-                cont1[i] = we;
+                cont1[i] = &we;
                 cout << "Ellipse rx = " << rx << " ry = " << ry << endl;
                 printData(&we, PI/4);
                 break;  
@@ -76,7 +76,7 @@ int main() {
                 rx = (rand() % 100 + 15) / 10.0;
                 st = (rand() % 100 + 15) / 20.0;
                 wh = Helix(rx, st);
-                cont1[i] = wh;
+                cont1[i] = &wh;
                 cout << "Helix rx = " << rx << " step = " << st << endl;
                 printData(&wh, PI/4);
         }
